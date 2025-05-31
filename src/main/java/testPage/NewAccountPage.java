@@ -12,4 +12,6 @@ public class NewAccountPage extends BasePage{
         super(driver, null);
     }
 
+
+
 }

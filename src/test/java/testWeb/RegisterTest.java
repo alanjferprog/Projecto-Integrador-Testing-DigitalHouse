@@ -89,9 +89,6 @@ public class RegisterTest {
             } else {
                 test.log(Status.FAIL, "Fallo el mensaje de Registro Exitoso");
             }
-
-
-
         } catch (Exception error) {
             test.log(Status.FAIL, "Se produjo una excepción durante la ejecución del test: " + error.getMessage());
         }
@@ -123,7 +120,7 @@ public class RegisterTest {
                     && (registerPage.msjCodigoPostalRequerido().equals("Zip Code is required."))
                     && (registerPage.msjSsnRequerido().equals("Social Security Number is required."))
                     && (registerPage.msjUsuarioRequerido().equals("Username is required."))
-                    && (registerPage.msjContraseñaRequerido().equals("Username is required."))
+                    && (registerPage.msjContraseñaRequerido().equals("Password is required."))
                     && (registerPage.msjReContraseñaRequerido().equals("Password confirmation is required."))
             ) {
                 test.log(Status.PASS, "Validación de Registro Exitoso");
@@ -154,4 +151,6 @@ public class RegisterTest {
     public static void saveReport() {
         extent.flush();
     }
+
 }
+

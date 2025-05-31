@@ -57,26 +57,29 @@ public class LoginTest {
     }
 
     /**
-     * Caso de prueba: Validar login fallido con credenciales incorrectas.
-     * Verifica que se muestre el mensaje de error esperado.
+     * Caso de prueba: Validar login exitoso.
+     * Verifica que se muestre el mensaje de bienvenida al usuario.
      * Se etiqueta con @Tag("LOGIN") para facilitar su ejecución selectiva.
      */
     @Test
     @Tag("LOGIN")
-    @DisplayName("Credenciales no verificadas.")
-    public void LoginFallido_CredencialesNoVerificadas() {
-        ExtentTest test = extent.createTest("Login Fallido - Credenciales no verificadas");
+    @DisplayName("Login Exitoso.")
+    public void testLogin_01() {
+        ExtentTest test = extent.createTest("Login Exitoso");
         test.log(Status.INFO, "Comienzo de test de login");
         LoginPage loginPage = new LoginPage(driver, wait);
 
-        loginPage.escribirUsuario("Alan");
+        loginPage.escribirUsuario("Alan21");
         loginPage.escribirContraseña("123456");
-        test.log(Status.PASS, "Datos del login completados");
+        test.log(Status.PASS, "Datos del login ingresados");
 
         loginPage.clickLogin();
 
-        Assertions.assertEquals("The username and password could not be verified.", loginPage.loginNoVerificado());
-        test.log(Status.PASS, "Se valida el Login Fallido");
+        if (loginPage.loginExitoso().equals("Welcome John Smith")) {
+            test.log(Status.PASS, "Validación de Login Exitoso");
+        } else {
+            test.log(Status.FAIL, "Fallo el mensaje de Login Exitoso");
+        }
     }
 
     /**
@@ -87,7 +90,7 @@ public class LoginTest {
     @Test
     @Tag("LOGIN")
     @DisplayName("Campos incompletos.")
-    public void LoginFallido_CamposIncompletos() {
+    public void testLogin_02() {
         ExtentTest test = extent.createTest("Login Fallido - Campos incompletos");
         test.log(Status.INFO, "Comienzo de test de login");
         LoginPage loginPage = new LoginPage(driver, wait);
@@ -100,6 +103,7 @@ public class LoginTest {
         test.log(Status.PASS, "Se valida el Login Fallido");
     }
 
+
     /**
      * Caso de prueba: Validar login fallido con campo de usuario vacio.
      * Verifica que se muestre el mensaje de error esperado.
@@ -108,7 +112,7 @@ public class LoginTest {
     @Test
     @Tag("LOGIN")
     @DisplayName("Username Vacio.")
-    public void LoginFallido_UsernameVacio() {
+    public void testLogin_03() {
         ExtentTest test = extent.createTest("Login Fallido - Username vacio");
         test.log(Status.INFO, "Comienzo de test de login");
         LoginPage loginPage = new LoginPage(driver, wait);
@@ -130,7 +134,7 @@ public class LoginTest {
     @Test
     @Tag("LOGIN")
     @DisplayName("Password vacia.")
-    public void LoginFallido_PasswordVacio() {
+    public void testLogin_04() {
         ExtentTest test = extent.createTest("Login Fallido - Password vacia");
         test.log(Status.INFO, "Comienzo de test de login");
         LoginPage loginPage = new LoginPage(driver, wait);

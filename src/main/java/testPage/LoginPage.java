@@ -13,7 +13,8 @@ public class LoginPage extends BasePage{
     // Localizadores de elementos de la página
     private By username= By.xpath("//*[@id=\"loginPanel\"]/form/div[1]/input");
     private By password= By.xpath("//*[@id=\"loginPanel\"]/form/div[2]/input");
-    private By login= By.xpath("//*[@id=\"loginPanel\"]/form/div[3]/input");
+    private By btnlogin= By.xpath("//*[@id=\"loginPanel\"]/form/div[3]/input");
+    private By msjLoginExitoso= By.xpath("//*[@id=\"leftPanel\"]/p");
     private By credencialesNoVerificadas= By.xpath("//*[@id=\"rightPanel\"]/p");
     private By msjGenerico= By.xpath("//*[@id=\"rightPanel\"]/p");
 
@@ -46,7 +47,16 @@ public class LoginPage extends BasePage{
      * Hace clic en el botón de login.
      */
     public void clickLogin() {
-        this.click(login);
+        this.click(btnlogin);
+    }
+
+    /**
+     * Devuelve el mensaje de bienvenida para el logueo exitoso.
+     * @return el texto del mensaje de inicio de sesión exitoso.
+     */
+    public String loginExitoso() {
+        System.out.println("MENSAJE DE BIENVENIDA: " + this.getText(msjLoginExitoso));
+        return this.getText(msjLoginExitoso);
     }
 
     /**
