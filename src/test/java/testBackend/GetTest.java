@@ -19,13 +19,7 @@ public class GetTest {
         Response responseBody= given().header("x-api-key", "reqres-free-v1").get(urlREQRES+ pathUser+ page);
 
         Assert.assertEquals(responseBody.getStatusCode(), 200);
-        System.out.println("EL CODIGO DE RESPUESTA ES"+ responseBody.getStatusCode()) ;
+        System.out.println("EL CODIGO DE RESPUESTA ES "+ responseBody.getStatusCode()) ;
         System.out.println("EL SERVICIO SE TARDO: "+ responseBody.getTime() + " MILISEGUNDOS");
-
-        Response resGet = RestAssured.get("https://reqres.in/api/users?page=2");
-        System.out.println(resGet.getBody().asString());
-        System.out.println(resGet.statusCode());
-        System.out.println(resGet.getHeader("Date"));
-        System.out.println(resGet.getTime());
     }
 }
