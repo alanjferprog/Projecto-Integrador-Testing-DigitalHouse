@@ -28,6 +28,8 @@ import java.time.Duration;
 public class LoginTest {
     public WebDriver driver;
     public WebDriverWait wait;
+    LoginPage loginPage;
+    String url= "http://localhost:8080/parabank/index.htm";
 
     // Configuración del reporte con ExtentReports
     static ExtentSparkReporter info = new ExtentSparkReporter("target/Reportes_login.html");
@@ -51,9 +53,9 @@ public class LoginTest {
     public void preconditions() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofMillis(5000));
-        LoginPage loginPage = new LoginPage(driver, wait);
+        loginPage = new LoginPage(driver, wait);
         loginPage.setup();
-        loginPage.url("https://parabank.parasoft.com/parabank/index.htm");
+        loginPage.url(url);
     }
 
     /**
@@ -67,10 +69,9 @@ public class LoginTest {
     public void testLogin_01() {
         ExtentTest test = extent.createTest("Login Exitoso");
         test.log(Status.INFO, "Comienzo de test de login");
-        LoginPage loginPage = new LoginPage(driver, wait);
 
-        loginPage.escribirUsuario("Alan21");
-        loginPage.escribirContraseña("123456");
+        loginPage.escribirUsuario("user18");
+        loginPage.escribirContraseña("StrongPass123");
         test.log(Status.PASS, "Datos del login ingresados");
 
         loginPage.clickLogin();
@@ -93,7 +94,6 @@ public class LoginTest {
     public void testLogin_02() {
         ExtentTest test = extent.createTest("Login Fallido - Campos incompletos");
         test.log(Status.INFO, "Comienzo de test de login");
-        LoginPage loginPage = new LoginPage(driver, wait);
 
         test.log(Status.PASS, "Datos del login no fueron completados");
 
@@ -115,7 +115,6 @@ public class LoginTest {
     public void testLogin_03() {
         ExtentTest test = extent.createTest("Login Fallido - Username vacio");
         test.log(Status.INFO, "Comienzo de test de login");
-        LoginPage loginPage = new LoginPage(driver, wait);
 
         loginPage.escribirContraseña("123456");
         test.log(Status.PASS, "Se completa solamente la contraseña");
@@ -137,7 +136,6 @@ public class LoginTest {
     public void testLogin_04() {
         ExtentTest test = extent.createTest("Login Fallido - Password vacia");
         test.log(Status.INFO, "Comienzo de test de login");
-        LoginPage loginPage = new LoginPage(driver, wait);
 
         loginPage.escribirUsuario("Alan");
         test.log(Status.PASS, "Se completa solamente el usuario");

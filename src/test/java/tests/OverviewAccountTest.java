@@ -62,7 +62,7 @@ public class OverviewAccountTest {
      */
     @Test
     @Tag("OVERVIEW-ACCOUNT")
-    @DisplayName("Nueva cuenta bancaria exitosa.")
+    @DisplayName("Ver detalles de cuenta (Toda actividad, de todo tipo).")
     public void testNewAccount_01() {
         ExtentTest test = extent.createTest("Ver el resumen de cuenta exitosamente.");
         test.log(Status.INFO, "Comienzo de test ver el resumen de cuenta.");
@@ -72,11 +72,28 @@ public class OverviewAccountTest {
         overviewAccountPage.clickResumenCuenta();
         test.log(Status.PASS, "Click en el boton de resumen de cuenta.");
 
-        if (overviewAccountPage.msjInformativo().equals("*Balance includes deposits that may be subject to holds")) {
-            test.log(Status.PASS, "Validación de Login Exitoso");
+        if (overviewAccountPage.msjInformativoRetenciones().equals("*Balance includes deposits that may be subject to holds")) {
+            test.log(Status.PASS, "Validación de msj informativo de retenciones");
         } else {
-            test.log(Status.FAIL, "Fallo el mensaje de Login Exitoso");
+            test.log(Status.FAIL, "Fallo el mensaje informativo de retenciones");
         }
+
+        overviewAccountPage.clickCuenta();
+        test.log(Status.PASS, "Click en una cuenta para ver sus detalles");
+
+        if (overviewAccountPage.msjDetalleCuenta().equals("Account Details")) {
+            test.log(Status.PASS, "Validación de msj Detalle de cuenta");
+        } else {
+            test.log(Status.FAIL, "Fallo el mensaje Detalle de cuenta");
+        }
+        overviewAccountPage.clickMesActvidad();
+        overviewAccountPage.clickTodaActividad();
+        overviewAccountPage.clickTipoActvidad();
+        overviewAccountPage.clickTodoTipoActividad();
+        test.log(Status.PASS, "Se selecciono el mes y el tipo de actividad");
+
+        overviewAccountPage.clickIr();
+        test.log(Status.PASS, "Se hizo click en IR.");
     }
 
     /**

@@ -27,6 +27,8 @@ public class RegisterTest {
 
     public WebDriver driver;
     public WebDriverWait wait;
+    RegistroPage registerPage;
+    String urlRegistro= "http://localhost:8080/parabank/register.htm";
 
     // Configuración del reporte con ExtentReports
     static ExtentSparkReporter info = new ExtentSparkReporter("target/Reportes_registro.html");
@@ -50,9 +52,9 @@ public class RegisterTest {
     public void setUp() throws InterruptedException {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofMillis(3000));
-        RegistroPage registerPage = new RegistroPage(driver, wait);
+        registerPage = new RegistroPage(driver, wait);
         registerPage.setup();
-        registerPage.url("https://parabank.parasoft.com/parabank/register.htm");
+        registerPage.url(urlRegistro);
     }
 
     /**
