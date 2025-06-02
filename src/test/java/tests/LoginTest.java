@@ -1,4 +1,4 @@
-package testWeb;
+package tests;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import reportes.ExtentFactory;
-import testPage.LoginPage;
+import Pages.LoginPage;
 
 import java.time.Duration;
 

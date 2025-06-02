@@ -1,5 +1,6 @@
-package testPage;
+package Pages;
 
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Representa la página de login del sistema bajo prueba.
  * Hereda de BasePage para reutilizar métodos comunes de interacción con elementos.
  */
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     // Localizadores de elementos de la página
     private By username= By.xpath("//*[@id=\"loginPanel\"]/form/div[1]/input");

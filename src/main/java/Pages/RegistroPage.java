@@ -1,5 +1,6 @@
-package testPage;
+package Pages;
 
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -8,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Representa la página de registro del sistema bajo prueba.
  * Hereda de BasePage para reutilizar métodos comunes de interacción con elementos.
  */
-public class RegistroPage extends BasePage{
+public class RegistroPage extends BasePage {
 
     // Localizadores de elementos de la página
     private By nombre= By.id("customer.firstName");

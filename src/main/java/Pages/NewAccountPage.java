@@ -1,12 +1,12 @@
-package testPage;
+package Pages;
 
+import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class NewAccountPage extends BasePage{
+public class NewAccountPage extends BasePage {
 
     private By btnNuevaCuenta= By.xpath("//*[@id=\"leftPanel\"]/ul/li[1]/a");
     private By tipoCuenta= By.id("type");
@@ -45,8 +45,9 @@ public class NewAccountPage extends BasePage{
      * @return el texto del mensaje de cuenta creada con exito.
      */
     public String msjCuentaCreada() {
-        System.out.println("MENSAJE DE EXITO: " + this.getText(txtCuentaCreada));
-        return this.getText(txtCuentaCreada);
+        String msj= this.getText(txtCuentaCreada);
+        System.out.println("MENSAJE DE EXITO: " + msj);
+        return msj;
     }
 
 
