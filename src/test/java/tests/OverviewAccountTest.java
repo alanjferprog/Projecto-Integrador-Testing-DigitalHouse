@@ -1,6 +1,7 @@
 package tests;
 
 import Pages.LoginPage;
+import Pages.OverviewAccountPage;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
@@ -16,19 +17,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import reportes.ExtentFactory;
-import Pages.NewAccountPage;
 import utils.AuthHelper;
 
 import java.time.Duration;
 
-public class NewAccountTest {
+public class OverviewAccountTest {
+
     public WebDriver driver;
     public WebDriverWait wait;
-    NewAccountPage newAccountPage;
+    OverviewAccountPage overviewAccountPage;
     public String url= "http://localhost:8080/parabank/index.htm";
 
     // Configuración del reporte con ExtentReports
-    static ExtentSparkReporter info = new ExtentSparkReporter("target/Reportes_newaccount.html");
+    static ExtentSparkReporter info = new ExtentSparkReporter("target/Reportes_overview-account.html");
     static ExtentReports extent;
 
     /**
@@ -49,9 +50,9 @@ public class NewAccountTest {
     public void preconditions() {
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofMillis(5000));
-        newAccountPage = new NewAccountPage(driver, wait);
-        newAccountPage.setup();
-        newAccountPage.url(url);
+        overviewAccountPage = new OverviewAccountPage(driver, wait);
+        overviewAccountPage.setup();
+        overviewAccountPage.url(url);
     }
 
     /**
@@ -60,22 +61,18 @@ public class NewAccountTest {
      * Se etiqueta con @Tag("LOGIN") para facilitar su ejecución selectiva.
      */
     @Test
-    @Tag("NEW-ACCOUNT")
+    @Tag("OVERVIEW-ACCOUNT")
     @DisplayName("Nueva cuenta bancaria exitosa.")
     public void testNewAccount_01() {
-        ExtentTest test = extent.createTest("Crear nueva cuenta bancaria Exitosamente.");
-        test.log(Status.INFO, "Comienzo de test crear nueva cuenta bancaria.");
+        ExtentTest test = extent.createTest("Ver el resumen de cuenta exitosamente.");
+        test.log(Status.INFO, "Comienzo de test ver el resumen de cuenta.");
 
         AuthHelper.login(driver);
 
-        newAccountPage.clickNuevaCuenta();
-        test.log(Status.PASS, "Click en el boton de nueva cuenta.");
-        newAccountPage.seleccionarCuenta();
-        test.log(Status.PASS, "Eleccion de tipo de cuenta.");
-        newAccountPage.clickAbrirCuenta();
-        test.log(Status.PASS, "Click en el boton para crear la cuenta efectivamente.");
+        overviewAccountPage.clickResumenCuenta();
+        test.log(Status.PASS, "Click en el boton de resumen de cuenta.");
 
-        if (newAccountPage.msjCuentaCreada().equals("Congratulations, your account is now open.")) {
+        if (overviewAccountPage.msjInformativo().equals("*Balance includes deposits that may be subject to holds")) {
             test.log(Status.PASS, "Validación de Login Exitoso");
         } else {
             test.log(Status.FAIL, "Fallo el mensaje de Login Exitoso");
@@ -100,5 +97,4 @@ public class NewAccountTest {
     public static void saveReport() {
         extent.flush();
     }
-
 }
